@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { login } from '../redux/feature/userSlice';
 
+//css module file
+import style from '../styles/login.module.css'
+
 //components
 import AlreadyLoggedIn from '../Components/AlreadyLoggedIn/AlreadyLoggedIn';
 
@@ -62,41 +65,55 @@ function LoginPage() {
     console.log(error)
 
     return (
-        <>
+        <div className={style.container}>
             { !loggedIn ?
-            <div>
-                <form>
-                    <label>Email</label>
-                    <input type="text" ref={Email} />
-                    <label htmlFor="">Password</label>
-                    <input type="text" ref={Password} />
-                    <button onClick={(e) => {
+            <div className={style.container_body}>
+
+                <h1 className={style.title}>Login</h1>
+
+                <div className={style.error}>
+
+                    <ul>
+                        { error ? 
+                        <>
+                            {error.map((e, i) =><li className={style.list} key={i}>{e}</li>)} 
+                        </>  
+                        : ''}
+                    </ul>
+
+                </div>
+
+                <form className={style.form}>
+                
+                    <label className={style.label}>Email</label>
+                    
+                    <input type="text" placeholder='Enter your email address...' className={style.input} ref={Email} />
+                    
+                    <label className={style.label} htmlFor="">Password</label>
+                    
+                    <input type="text" placeholder='Enter your email password...' className={style.input} ref={Password} />
+                    
+                    <button className={style.button} onClick={(e) => {
                         e.preventDefault();
                         findUser()
                     }} >Submit</button>
-                </form>
-                <div>
 
-                </div>
-                <ul>
-                    { error ? 
-                    <>
-                        {error.map((e, i) =><li key={i}>{e}</li>)} 
-                    </>  
-                    : ''}
-                </ul>
-                <div>
-                    <Link href='/'>Return Home</Link>
-                </div>
-                <div>
-                    <p>Do not have an account click here to create a new account</p>
-                    <Link href='/signup'>Create a new account</Link>
+                    <button className={style.cancelBtn} onClick={(e) => {
+                        e.preventDefault();
+                        router.push('/');
+                    }}>Cancel</button>
+                </form>
+
+                <div className={style.links_container}>
+                    <p>Don't have an account?</p>
+                    <br />
+                    <Link href='/signup'>Click here to create one</Link>
                 </div>
             </div> 
             : 
                 <AlreadyLoggedIn />
             }
-        </>
+        </div>
     )
 }
 

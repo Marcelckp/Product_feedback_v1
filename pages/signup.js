@@ -84,59 +84,64 @@ export default function Home() {
       { !user ? 
       <>
         <div className={style.container_body}>
-            <div>
+        
+            <div className={style.container_section}>
               <div>
-                <h1>Sign Up</h1>
+                <h1 className={style.title}>Sign Up</h1>
                 {error ? 
                   <div className={style.error}>
                       <ul>
                         { error.map((value, index) => {
                           console.log(value)
-                          return <li key={index}> {value}</li>
+                          return <li className={style.list} key={index}> {value}</li>
                         }) }
                       </ul>
                   </div> 
                 : ''}
               </div>
-              <div>
+              <div className={style.form_container}>
                 <form>
-                  <label htmlFor="">Name</label>
-                  <br />
-                  <input className='bg-red' type="text" ref={Name} />
-                  <br />
-                  <label htmlFor="">Surname</label>
-                  <br />
-                  <input type="text" ref={Surname} />
-                  <br />
-                  <label htmlFor="">Username</label>
-                  <br />
-                  <input ref={Username} type="text"  />
-                  <br />
-                  <label htmlFor="">Email</label>
-                  <br />
-                  <input ref={Email} type="text" />
-                  <br />
-                  <label htmlFor="">Password</label>
-                  <br />
-                  <input ref={Password} type="text" />
-                  <br />
-                  <button onClick={(e) => {
+                  <label className={style.label} htmlFor="">Name</label>
+                  
+                  <input placeholder='Enter your name...' className={style.input} type="text" ref={Name} />
+                  
+                  <label className={style.label} htmlFor="">Surname</label>
+                  
+                  <input placeholder='Enter your surname...' className={style.input} type="text" ref={Surname} />
+                  
+                  <label className={style.label} htmlFor="">Username</label>
+                  
+                  <input placeholder='Enter your username...' className={style.input} ref={Username} type="text"  />
+                  
+                  <label className={style.label} htmlFor="">Email Address</label>
+                  
+                  <input placeholder='Enter your email address...' className={style.input} ref={Email} type="text" />
+                  
+                  <label className={style.label} htmlFor="">Password</label>
+                  
+                  <input placeholder='Enter your password...' className={style.input} ref={Password} type="text" />
+                  
+                  <button className={style.button} onClick={(e) => {
                     e.preventDefault();
                     logn()
-                  }}>submit</button>
-                  <br />
+                  }}>Submit</button>
+
+                  <button className={style.cancelBtn} onClick={(e) => {
+                    e.preventDefault();
+                    router.push('/');
+                  }}>Cancel</button>
+                  
                 </form>
               </div>
             </div>
-            <div>
-                <ul>
-                  <li><Link href='/'>Go Home</Link></li>
-                </ul>
+
+            <div className={style.links_container}>
+              <div>
+                <p>Already have an account?</p>
+                <Link className={style.redirect} href='/login'>Click here to login</Link>
+              </div>
             </div>
-            <div>
-              <p>Already have an account?</p>
-              <Link href='/login' >Click here to login</Link>
-            </div>
+            
         </div>
       </>
       : 

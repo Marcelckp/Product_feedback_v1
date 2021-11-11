@@ -1,6 +1,6 @@
 .container {
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -8,17 +8,91 @@
     background-color:#F7F8FD;
 }
 .container_body {
-    width: 80%;
-    height: 90%;
+    width: 90%;
+    max-width: 768px;
+    /* height: 90%; */
     margin: auto;
-    /* text-align: center; */
     background-color: white;
     border-radius: 10px;
-    /* padding: 40px; */
-    /* padding-top: 0; */
+}
+
+.container_section {
+    padding: 30px;
+}
+
+.label {
+    font-weight: bold;
+    color: #3A4374;
+}
+
+.input {
+    padding: 10px 10px;
+    background-color: #F7F8FD;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #3A4374;
+    border: none;
+}
+.input:focus {
+    outline-color: #AD1FEA;
+}
+
+.input::placeholder {
+    color: #3a437470;
+}
+
+.button {
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 10px;
+    background-color: #AD1FEA;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white
+}
+
+.cancelBtn {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 10px;
+    background-color: #3A4374;
+    border-radius: 10px;
+}
+
+.links_container {
+    padding: 30px;
+    margin-top: -20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #3A4374;
+}
+
+.list {
+    list-style-type: circle;
 }
 
 .error {
     color: red;
     font-size: 10px;
+    line-height:1.5em;
+    margin-bottom: 30px;
+    padding-left: 20px
+}
+
+.redirect {
+    text-decoration: none;
+    color: white
 }
