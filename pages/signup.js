@@ -1,6 +1,6 @@
 import axios from 'axios';
-import Head from 'next/head';
-import Image from 'next/image';
+// import Head from 'next/head';
+// import Image from 'next/image';
 
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,9 @@ import Link from 'next/link';
 
 //components 
 import AlreadyLoggedIn from '../Components/AlreadyLoggedIn/AlreadyLoggedIn';
+
+//module.css file
+import style from '../styles/signup.module.css';
 
 export default function Home() {
 
@@ -77,62 +80,68 @@ export default function Home() {
   // })
 
   return (
-    <>
+    <div className={style.container}>
       { !user ? 
       <>
-        <div>
-        {user && !error ? <p> the user {user.username} has been created</p> : ''}
-        {error ? <div>
-          <h1>Error</h1>
-            <ul>
-              { error.map((value, index) => {
-                console.log(value)
-                return <li key={index}> {value}</li>
-              }) }
-            </ul>
-        </div> : ''}
-          <h1>The home page</h1>
-            <form>
-              <label htmlFor="">Name</label>
-              <br />
-              <input type="text" ref={Name} />
-              <br />
-              <label htmlFor="">Surname</label>
-              <br />
-              <input type="text" ref={Surname} />
-              <br />
-              <label htmlFor="">Username</label>
-              <br />
-              <input ref={Username} type="text"  />
-              <br />
-              <label htmlFor="">Email</label>
-              <br />
-              <input ref={Email} type="text" />
-              <br />
-              <label htmlFor="">Password</label>
-              <br />
-              <input ref={Password} type="text" />
-              <br />
-              <button onClick={(e) => {
-                e.preventDefault();
-                logn()
-              }}>submit</button>
-              <br />
-            </form>
-        </div>
-        <div>
-            <ul>
-              <li><Link href='/'>Go Home</Link></li>
-            </ul>
-        </div>
-        <div>
-          <p>Already have an account?</p>
-          <Link href='/login' >Click here to login</Link>
+        <div className={style.container_body}>
+            <div>
+              <div>
+                <h1>Sign Up</h1>
+                {error ? 
+                  <div className={style.error}>
+                      <ul>
+                        { error.map((value, index) => {
+                          console.log(value)
+                          return <li key={index}> {value}</li>
+                        }) }
+                      </ul>
+                  </div> 
+                : ''}
+              </div>
+              <div>
+                <form>
+                  <label htmlFor="">Name</label>
+                  <br />
+                  <input className='bg-red' type="text" ref={Name} />
+                  <br />
+                  <label htmlFor="">Surname</label>
+                  <br />
+                  <input type="text" ref={Surname} />
+                  <br />
+                  <label htmlFor="">Username</label>
+                  <br />
+                  <input ref={Username} type="text"  />
+                  <br />
+                  <label htmlFor="">Email</label>
+                  <br />
+                  <input ref={Email} type="text" />
+                  <br />
+                  <label htmlFor="">Password</label>
+                  <br />
+                  <input ref={Password} type="text" />
+                  <br />
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    logn()
+                  }}>submit</button>
+                  <br />
+                </form>
+              </div>
+            </div>
+            <div>
+                <ul>
+                  <li><Link href='/'>Go Home</Link></li>
+                </ul>
+            </div>
+            <div>
+              <p>Already have an account?</p>
+              <Link href='/login' >Click here to login</Link>
+            </div>
         </div>
       </>
       : 
         <AlreadyLoggedIn />
       }
-    </>
+    </div>
   )
 }

@@ -10,9 +10,6 @@ import AlreadyLoggedIn from '../Components/AlreadyLoggedIn/AlreadyLoggedIn';
 //next imports
 import Link from 'next/link';
 
-//tailwindcss
-import 'tailwindcss/tailwind.css'
-
 function LoginPage() {
     
     const dispatch = useDispatch();

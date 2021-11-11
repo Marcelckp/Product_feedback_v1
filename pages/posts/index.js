@@ -67,7 +67,7 @@ function Index(props) {
                 { feedBackPosts && feedBackPosts.map((post, i) => {
                     return (
                         <div key={i}>
-                            <div style={{border: '140px solid black'}}>
+                            <div>
                                 <h1>{post.title}</h1>
                                 <h2>{post.creator.name}</h2>
                                 <h3>{post.creator.username}</h3>
