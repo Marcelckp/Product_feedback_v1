@@ -20,7 +20,7 @@ const AccountSchema = mongoose.Schema({
     username: {
         type: String,
         unique: 'The Username you entered is taken.',
-        required: 'Username is required.',
+        required: 'Username is required',
         trim: true
     },
     email: {
@@ -31,7 +31,7 @@ const AccountSchema = mongoose.Schema({
             isAsync: false,
         },
         unique: true,
-        required: 'Email is required.',
+        required: 'Email is required',
         trim: true
     },
     password: {
@@ -43,7 +43,7 @@ const AccountSchema = mongoose.Schema({
             message: 'The Password you entered is too short',
             isAsync: false,
         },
-        required: 'Password is required.',
+        required: 'Password is required',
         trim: true
     }
 })

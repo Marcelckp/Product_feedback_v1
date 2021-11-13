@@ -52,11 +52,20 @@
 .button {
     background-color: #AD1FEA;
     color: white;
+    cursor: pointer;
     border: none;
     font-weight: bold;
     margin-top: 20px;
     border-radius: 10px;
     padding: 10px;
+}
+
+.button:focus {
+    outline-color: royalblue;
+}
+
+.button:hover {
+    background-color: rgb(173, 31, 234, 0.8)
 }
 
 .cancelBtn {
@@ -70,11 +79,23 @@
     padding: 10px
 }
 
+.cancelBtn:focus {
+    outline-color: royalblue;
+}
+
+.cancelBtn:hover {
+    background-color:rgba(58, 67, 116, 0.8)
+}
+
 .error {
     color: red;
     padding-left: 20px;
     font-size: 10px;
     margin-bottom: 20px;
+}
+
+.error_input {
+    border: 2px solid red;
 }
 
 .list {
@@ -83,5 +104,6 @@
 
 .links_container {
     padding: 20px;
+    margin-top: 30px;
     text-align: center;
 }

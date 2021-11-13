@@ -22,10 +22,12 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.1",
     "redux": "^4.1.2",
+    "styled-components": "^5.3.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
+    "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.0.1",
     "eslint-config-next": "11.1.2",
     "postcss": "^8.3.11"

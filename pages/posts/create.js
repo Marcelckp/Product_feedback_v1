@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-//components
-import AlreadyLoggedIn from '../../Components/AlreadyLoggedIn/AlreadyLoggedIn';
+//css module file
+import style from '../../styles/postcreate.module.css';
 
 //next imports 
 import Link from 'next/link';
@@ -18,7 +18,7 @@ function Create() {
 
     const [user, setUser] = useState(useSelector(state => state.CurrentUser.value)); 
 
-    console.log(user)
+    console.log(user);
 
     const createPost = async () => {
 
@@ -39,55 +39,69 @@ function Create() {
     }
 
     return (
-        <>
+        <div className={style.container}>
         { user ?
-        <div>
-            <h1>Create FeedBack Post</h1>
-            <form>
-                <label>Title</label>
+            <div className={style.container_body}>
+                <h1 className={style.title}>Create New FeedBack</h1>
                 <br />
-                <input placeholder='Post Title' ref={title} type="text" />
-                <br />
-                <label htmlFor="">FeedBack</label>
-                <br />
-                <textarea placeholder='Post Feedback Message' ref={feedback} name="" id="" cols="30" rows="10"></textarea>
-                <br />
-                <label htmlFor="">Status</label>
-                <input type="text" value='Suggestion' disabled/>
-                <br />
-                <label htmlFor="">Category</label>
-                <select ref={category} name="" id="">
-                    <option value="UI">UI</option>
-                    <option value="UX">UX</option>
-                    <option value="Enhancements">Enhancements</option>
-                    <option value='Bug'>Bug</option>
-                    <option value="Feature">Feature</option>
-                </select>
-                <br />
-                <br />
-                <button onClick={(e) => {
-                    e.preventDefault()
-                    createPost()
-                }}>Create Post</button>
-            </form>
-            <div>
-                <ul>
-                    <li>
-                        <Link href='/'>Go back Home</Link>
-                    </li>
-                    <li>
-                        <Link href='/profilepage'>View your Profile</Link>
-                    </li>
-                </ul>
+                <form>
+
+                    <label className={style.label}>Feedback Title</label>
+
+                    <p className={style.description}>Add a short, descriptive headline</p>
+                    
+                    <input placeholder='Enter a title...' className={style.titleInput} ref={title} type="text" />
+
+                    <br />
+                    <br />
+
+                    <label className={style.label} htmlFor="">Category</label>
+
+                    <p className={style.description}>Choose a category for your feedback</p>
+
+                    <select className={style.selectMenu} ref={category} name="" id="">
+                        <option value="UI">UI</option>
+                        <option value="UX">UX</option>
+                        <option value="Enhancements">Enhancements</option>
+                        <option value='Bug'>Bug</option>
+                        <option value="Feature">Feature</option>
+                    </select>
+
+                    <br />
+                    <br />
+
+                    <label className={style.label} htmlFor="">FeedBack Detail</label>
+
+                    <p className={style.description}>Include any specific comments on what should be improved, added, etc.</p>
+                    
+                    <textarea className={`${style.textarea}`} placeholder='Enter a post feedback message...' ref={feedback} name="" id="" cols="30" rows="10"></textarea>
+
+                    <div className={style.buttonDiv}>
+                        <button className={style.submitBtn} onClick={(e) => {
+                            e.preventDefault()
+                            createPost()
+                        }}>Create Feedback</button>
+                        <br />
+                        <button className={style.profileBtn} onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/profile')
+                        }}>Profile</button>
+                        <br />
+                        <button className={style.homeBtn} onClick={(e) => {
+                            e.preventDefault();
+                            router.push('/')
+                        }}>Home</button>
+                    </div>
+                </form>
+                
             </div>
-        </div>
         : 
             <div>
                 <h1>You need to log in before you can create a new post</h1>
                 <Link href='/login'>Log In To Your Account</Link>
             </div>
         }
-        </>
+        </div>
     )
 }
 

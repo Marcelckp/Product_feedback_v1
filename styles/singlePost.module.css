@@ -1,0 +1,127 @@
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color:#F7F8FD;
+    position: relative;
+}
+
+.feedbackTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.container_body {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    
+    margin-top: 80px;
+
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    color:rgba(58, 67, 116);
+    padding: 30px;
+
+}
+
+.bodyCmt {
+    display: flex;
+    flex-direction: column;
+}
+
+.allComments {
+    display: flex;
+    flex-direction: column;
+}
+
+.allCommentsTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px
+}
+
+.allCommentsBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.headSection {
+    display: flex;
+    flex-direction: row;
+}
+
+.container_comments {
+    width: 90%;
+    background-color:white;
+    color:rgba(58, 67, 116);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    /* position: absolute;
+    top: 270px; */
+    height: auto
+}
+
+/* .allComments {} */
+
+.commentSection {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    /* margin-top: 20px; */
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    /* position: absolute;
+    bottom: 20px */
+}
+
+.commentTitle {
+    font-size: 20px;
+    color:rgba(58, 67, 116);
+}
+
+.textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    color:rgba(58, 67, 116);
+    background-color: #F7F8FD;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.textarea::placeholder {
+    color:rgba(58, 67, 116);
+}
+
+.btnSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.characters {
+    color:rgba(58, 67, 116, 0.8);
+    font-size: 13px
+}
+
+.button {
+    width: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #AD1FEA;
+    color: white;
+    font-weight: bold;
+}

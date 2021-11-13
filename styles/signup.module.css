@@ -7,13 +7,17 @@
     align-items: center;
     background-color:#F7F8FD;
 }
+
 .container_body {
     width: 90%;
     max-width: 768px;
-    /* height: 90%; */
+    height: auto;
     margin: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
     background-color: white;
     border-radius: 10px;
+    color:rgba(58, 67, 116);
 }
 
 .container_section {
@@ -55,6 +59,14 @@
     color: white
 }
 
+.button:focus {
+    outline-color: royalblue;
+}
+
+.button:hover {
+    background-color: rgb(173, 31, 234, 0.8)
+}
+
 .cancelBtn {
     border: none;
     cursor: pointer;
@@ -65,6 +77,14 @@
     padding: 10px 10px;
     background-color: #3A4374;
     border-radius: 10px;
+}
+
+.cancelBtn:focus {
+    outline-color: royalblue;
+}
+
+.cancelBtn:hover {
+    background-color:rgba(58, 67, 116, 0.8)
 }
 
 .links_container {
@@ -90,6 +110,10 @@
     line-height:1.5em;
     margin-bottom: 30px;
     padding-left: 20px
+}
+
+.error_input {
+    border: 2px solid red;
 }
 
 .redirect {

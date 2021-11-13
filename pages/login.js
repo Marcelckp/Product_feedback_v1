@@ -5,13 +5,14 @@ import { useRouter } from 'next/router';
 import { login } from '../redux/feature/userSlice';
 
 //css module file
-import style from '../styles/login.module.css'
+import style from '../styles/login.module.css';
 
 //components
 import AlreadyLoggedIn from '../Components/AlreadyLoggedIn/AlreadyLoggedIn';
 
 //next imports
 import Link from 'next/link';
+import Head from 'next/head';
 
 function LoginPage() {
     
@@ -25,6 +26,14 @@ function LoginPage() {
 
     const Email = useRef(null);
     const Password = useRef(null);
+
+    //================================================================
+    //error indicator section
+
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
+
+    //================================================================
 
     const findUser = async () => {
         
@@ -41,31 +50,33 @@ function LoginPage() {
 
             else setUser(res.data);
 
-            console.log(res.data.password === Password.current.value);
+            // console.log(res.data.password === Password.current.value);
 
             if (res.data.password === Password.current.value) {
                 dispatch(login(res.data))
-                router.push('/profilepage');
+                router.push('/profile');
             }
-            else setError(prev => [ ...prev, 'Your Email or Password is incorrect.'])
+            else {
+                setError(prev => [ ...prev, 'Your Email or Password is incorrect.'])
+                setErrorEmail(true);
+                setErrorPassword(true);
+            }
 
         }).catch(error => {
             console.log(error);
             setError(error.message);
         })
+
     }
 
-    // useEffect(() => {
-    //     if (loggedIn) {
-    //         router.push('/profilepage');
-    //     }
-    // })
-
-    console.log(user)
-    console.log(error)
+    // console.log(user)
+    // console.log(error)
 
     return (
         <div className={style.container}>
+            <Head>
+                <title>Login</title>
+            </Head>
             { !loggedIn ?
             <div className={style.container_body}>
 
@@ -87,11 +98,15 @@ function LoginPage() {
                 
                     <label className={style.label}>Email</label>
                     
-                    <input type="text" placeholder='Enter your email address...' className={style.input} ref={Email} />
+                    <input type="text" onChange={() => {
+                        setErrorEmail(false)
+                    }} placeholder='Enter your email address...' className={`${ style.input } ${ errorEmail ? style.error_input : '' } }`} ref={Email} />
                     
                     <label className={style.label} htmlFor="">Password</label>
                     
-                    <input type="text" placeholder='Enter your email password...' className={style.input} ref={Password} />
+                    <input type="text" onChange={() => {
+                        setErrorPassword(false);
+                    }} placeholder='Enter your email password...' className={`${ style.input } ${ errorPassword ? style.error_input : '' }`} ref={Password} />
                     
                     <button className={style.button} onClick={(e) => {
                         e.preventDefault();

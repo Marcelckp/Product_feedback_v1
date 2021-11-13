@@ -1,0 +1,15 @@
+.container {
+    color: #3A4374
+}
+
+.container_body {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    margin: auto;
+    /* margin-top: 80px;
+    margin-bottom: 20px; */
+    background-color: white;
+    border-radius: 10px;
+    color:rgba(58, 67, 116);
+}

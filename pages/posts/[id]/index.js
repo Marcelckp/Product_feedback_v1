@@ -5,17 +5,29 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 
+//css module file
+import style from '../../../styles/singlePost.module.css';
+
 function index(props) {
 
-    // console.log(props.id);
+    console.log(props);
 
     const user = useSelector(state => state.CurrentUser.value);
 
     const [commentsForPost, setCommentsForPost] = useState(null);
 
-    const [openComment, setOpenComment] = useState(null);
-
+    //================================================================
+    // comment logic section
     const comment = useRef(null);
+
+    const [commentChars, setCommentChars] = useState(250);
+
+    const calChars = () => {
+        let numbCharsCurrent = comment.current.value.length;
+        console.log(numbCharsCurrent)
+
+        setCommentChars(250 - numbCharsCurrent)
+    }
 
     const sendComment = () => {
         axios.post('/api/comment', {
@@ -28,6 +40,8 @@ function index(props) {
             console.log(err)
         })
     }
+
+    //===============================================================
 
     useEffect(() => {
         let mounted = true;
@@ -43,52 +57,91 @@ function index(props) {
     // console.log(commentsForPost)
 
     return (
-        <div>
-            <h1>view single post</h1>
-            <div>
-                <p>{props.title}</p>
-                <p>{props.post.feedback}</p>
-                <p>{props.post.creator.name}</p>
-                <p>{props.post.creator.username}</p>
+        <div className={style.container}>
+
+            <div className={style.container_body}>
+
+                <h1 className={style.feedbackTitle}>{props.post.title}</h1>
+
+                <div className={style.feedback}>
+                    <p>{props.post.feedback}</p>
+                    <p>{props.post.creator.name}</p>
+                    <p>{props.post.creator.username}</p>
+                </div>
+
             </div>
-            <div>
-                <h1>Comments</h1>
-                { commentsForPost ?
-                    commentsForPost.map(( val, i ) => {
-                        return (
-                            <div key={i}>
-                                <p>{val.user.username}</p>
-                                <p>{val.comment}</p>
-                                <p>{val.createdAt}</p>
-                            </div>
-                        )
-                    })
-                : null}
-            </div>
-            <div>
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    openComment ? setOpenComment(false) : setOpenComment(true);
-                }}>Comment on this post</button>
-            </div>
-            {openComment ? 
-                    <div>
-                        <textarea name="" id="" cols="30" rows="10" placeholder='add your comment message here' ref={comment} ></textarea>
-                        <br />
-                        <button onClick={(e) => {
-                            e.preventDefault();
-                            sendComment()
-                        }}>Submit Comment</button>
+
+            { commentsForPost ? 
+                <div className={style.container_comments}>
+
+                    <div className={style.allComments}>
+                        <h1 className={style.allCommentsTitle}>{commentsForPost && commentsForPost.length === 1 ? `${commentsForPost.length} Comment` : commentsForPost && commentsForPost.length > 1 ? `${commentsForPost.length} Comments` : ''}</h1>
+
+                        <div className={style.allCommentsBody}>
+                            { commentsForPost ?
+                                commentsForPost.map(( val, i ) => {
+                                    return (
+                                        <div className={style.bodyCmt} key={i}>
+
+                                            <div className={style.headSection}>
+                                                <img src={val.user.image} alt="" />
+                                                <div className={style.user}>
+                                                    <p>{val.user.name} {val.user.surname}</p>
+                                                    <p>{val.user.username}</p>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div className={style.contentSection}>
+                                                <p>{val.comment}</p>
+
+                                                <p>{val.createdAt}</p>
+                                            </div>
+                                            
+                                            
+
+                                        </div>
+                                    )
+                                })
+                            : null}
+                        </div>
+                        
+
                     </div>
-            : null}
-            <ul>
-                <li>
-                    <Link href='/'>Return Home</Link>
-                </li>
-                <li>
-                    <Link href='/profilepage'>View Profile</Link>
-                </li>
-            </ul>
+
+                </div>
+            : ''}
+
+            <div className={style.commentSection}>
+
+                <h2 className={style.commentTitle}>Add A Comment</h2>
+
+                <textarea onChange={() => calChars() } className={style.textarea} maxLength='250' placeholder='Add your comment message here...' ref={comment} ></textarea>
+
+                <br />
+
+                <div className={style.btnSection}>
+
+                    <p className={style.characters}>{commentChars} Characters Left</p>
+
+                    <button className={style.button} onClick={(e) => {
+                        e.preventDefault();
+                        sendComment()
+                    }}>Post Comment</button>
+
+                </div>
+
+            </div>
+
+                {/* <ul>
+                    <li>
+                        <Link href='/'>Return Home</Link>
+                    </li>
+                    <li>
+                        <Link href='/profile'>View Profile</Link>
+                    </li>
+                </ul> */}
+
         </div>
     )
 }
@@ -102,11 +155,23 @@ export const getServerSideProps = async (context) => {
             },
             
     }).then(res => res.data)
-    console.log(post)
-    return {
-        props : {
-            id: context.params.id,
-            post
+    // console.log(post);
+
+    if (!post) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/404'
+            },
+            props:{}
+        }
+        
+    } else {
+        return {
+            props : {
+                id: context.params.id,
+                post
+            }
         }
     }
 

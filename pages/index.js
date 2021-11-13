@@ -17,7 +17,7 @@ function index() {
             <p>Home Page</p>
             {user ? <p>Welcome Sir/Madam {user.username}</p> : ''}
             <ul>
-                {user ? <li><Link href='/profilepage'>View Your Profile</Link></li> : ''}
+                {user ? <li><Link href='/profile'>View Your Profile</Link></li> : ''}
                 <li><Link href='/signup'>Sign Up</Link></li>
                 <li><Link href='/login'>Login</Link></li>
                 <li>

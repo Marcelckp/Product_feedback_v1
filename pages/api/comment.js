@@ -14,16 +14,21 @@ export default async (req, res, next) => {
             await newComment.save();
             res.status(201).json(newComment);
         } catch (err) {
-            res.status(301).json(err)
+            res.status(301).json(err.message)
         }
 
         console.log('targeting post comments')
 
     } else if (req.method === 'GET') {
+        
         console.log(req.query)
-        const comEnt = await comments.find( { "post_id" : { $eq : req.query.id } } );
+        try {
+            const comEnt = await comments.find( { "post_id" : { $eq : req.query.id } } );
 
-        res.status(200).json(comEnt)
+            res.status(200).json(comEnt);
+        } catch (err) {
+            res.status(404).json(err.message)
+        }
 
     } else if (req.method === 'DELETE') {
 

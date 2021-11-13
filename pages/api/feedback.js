@@ -77,7 +77,7 @@ export default async (req, res, next) => {
                 res.status(200).json(post);
 
             } catch (err) {
-                console.log(err)
+                res.status(404).json('not found');
             }
 
         } else {
