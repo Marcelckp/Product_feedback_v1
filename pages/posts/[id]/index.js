@@ -3,21 +3,71 @@ import React, { useState, useRef, useEffect } from 'react';
 
 //next imports
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+//redux imports
 import { useSelector } from 'react-redux';
 
 //css module file
 import style from '../../../styles/singlePost.module.css';
 
+//image import
+import default_pfp from '../../../image/default_pfp.png'
+
+
 function index(props) {
 
     console.log(props);
 
+    const router = useRouter();
+
     const user = useSelector(state => state.CurrentUser.value);
 
-    const [commentsForPost, setCommentsForPost] = useState(null);
+    const [commentsForPost, setCommentsForPost] = useState(0);
+
+    const [added, setAdded] = useState(0);
+
+    // ===============================================================
+    // like logic section 
+
+    const [alreadyLiked, setAlreadyLiked] = useState(false);
+
+    const refreshData = async () => await router.reload(window.location.pathname);
+
+    const likePost = async (id) => {
+
+        if (user && !alreadyLiked) {
+
+            await axios.put('/api/feedback', { id: props.id, currentUser: user })
+                .then((res) => {
+                    console.log(res.data)
+                    refreshData();
+                }).catch((e) => {
+                    console.log(e)
+                })
+
+        } else if (alreadyLiked) { 
+            return alert('You have already liked this post');
+        } else {
+            return alert('You need to login before being able to like this post');
+        }
+
+    }
+
+    const isLiked = () => {
+        const arrObjValues = Object.values(props.post.likes);
+        let usernameArr = [];
+
+        for (let i in arrObjValues) {
+            usernameArr.push(arrObjValues[i].username);
+        }
+
+        if (user && usernameArr.includes(user.username)) setAlreadyLiked(true);
+    }
 
     //================================================================
     // comment logic section
+
     const comment = useRef(null);
 
     const [commentChars, setCommentChars] = useState(250);
@@ -35,9 +85,10 @@ function index(props) {
             comment: comment.current.value,
             user,
         }).then((res) => {
-            console.log(res)
+            setAdded(prev => prev + 1);
+            // console.log(res)
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
         })
     }
 
@@ -45,6 +96,7 @@ function index(props) {
 
     useEffect(() => {
         let mounted = true;
+        isLiked();
         axios.get('/api/comment', {
             params: {
                 id: props.id
@@ -52,9 +104,9 @@ function index(props) {
         }).then((res) => {
             setCommentsForPost(res.data)
         })
-    },[])
+    },[added])
 
-    // console.log(commentsForPost)
+console.log(user)
 
     return (
         <div className={style.container}>
@@ -63,10 +115,31 @@ function index(props) {
 
                 <h1 className={style.feedbackTitle}>{props.post.title}</h1>
 
+                <p>{props.post.feedback}</p>
+
+                <div className={style.tagsDiv}>
+                    <p className={style.tags}>{props.post.tags}</p>
+                </div>
+
                 <div className={style.feedback}>
-                    <p>{props.post.feedback}</p>
-                    <p>{props.post.creator.name}</p>
-                    <p>{props.post.creator.username}</p>
+
+                    <div onClick={() => {
+                        likePost()
+                    }} className={`${style.feedback_like} ${alreadyLiked ? style.likedFeedback : ''}`}>
+                        <svg className={style.like_icon} width="9" fill='none' height="7" viewBox="0 0 9 7">
+                            <path id="Path 2" d="M0 6L4 2L8 6" stroke={`${ alreadyLiked ? 'white' : '#4661E6' }`} strokeWidth="2"/>
+                        </svg>
+
+                        <p className={`${alreadyLiked ? style.alreadyLiked : ''}`}>{props.post.likes.length}</p>
+                    </div>
+                    
+                    <div className={style.feedback_comment}>
+                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none">
+                            <path d="M2.62074 16H1.34534L2.24718 15.0895C2.73344 14.5986 3.0371 13.9601 3.11873 13.2674C1.03637 11.8878 0 9.88917 0 7.79388C0 3.92832 3.51913 0 9.0305 0C14.8692 0 18 3.61479 18 7.45522C18 11.321 14.8361 14.9333 9.0305 14.9333C8.0135 14.9333 6.95226 14.7963 6.00478 14.5448C5.10787 15.4735 3.89262 16 2.62074 16Z" fill="#CDD2EE"/>
+                        </svg> 
+                        <p className={style.commentLength}>{commentsForPost.length}</p>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -74,27 +147,28 @@ function index(props) {
             { commentsForPost ? 
                 <div className={style.container_comments}>
 
-                    <div className={style.allComments}>
-                        <h1 className={style.allCommentsTitle}>{commentsForPost && commentsForPost.length === 1 ? `${commentsForPost.length} Comment` : commentsForPost && commentsForPost.length > 1 ? `${commentsForPost.length} Comments` : ''}</h1>
+                        <h1 className={style.allCommentsTitle}>{commentsForPost && commentsForPost.length === 1 ? `${commentsForPost.length} Comment` : commentsForPost && commentsForPost.length > 1 ? `${commentsForPost.length || 0} Comments` : ''}</h1>
 
                         <div className={style.allCommentsBody}>
+
                             { commentsForPost ?
+
                                 commentsForPost.map(( val, i ) => {
+                                    console.log(val)
                                     return (
                                         <div className={style.bodyCmt} key={i}>
 
                                             <div className={style.headSection}>
-                                                <img src={val.user.image} alt="" />
+                                                { val.user.profilePhoto ? <img className={style.pfp} src={val.user.profilePhoto} alt="" /> : <img className={style.pfp} src={default_pfp.src} alt="profile" /> }
                                                 <div className={style.user}>
-                                                    <p>{val.user.name} {val.user.surname}</p>
-                                                    <p>{val.user.username}</p>
+                                                    <p className={style.name}>{val.user.name} {val.user.surname}</p>
+                                                    <p className={style.at}>@{val.user.username}</p>
                                                 </div>
                                                 
                                             </div>
 
                                             <div className={style.contentSection}>
-                                                <p>{val.comment}</p>
-
+                                                <p style={{color: '#647196'}}>{val.comment}</p>
                                                 <p>{val.createdAt}</p>
                                             </div>
                                             
@@ -105,31 +179,55 @@ function index(props) {
                                 })
                             : null}
                         </div>
-                        
-
-                    </div>
 
                 </div>
             : ''}
 
             <div className={style.commentSection}>
+                
+                    {user ?
+                        <>
 
-                <h2 className={style.commentTitle}>Add A Comment</h2>
+                            <h2 className={style.commentTitle}>Add A Comment</h2>
 
-                <textarea onChange={() => calChars() } className={style.textarea} maxLength='250' placeholder='Add your comment message here...' ref={comment} ></textarea>
+                            <textarea onChange={() => calChars() } className={style.textarea} maxLength='250' placeholder='Add your comment message here...' ref={comment} ></textarea>
 
-                <br />
+                            <br />
 
-                <div className={style.btnSection}>
+                            <div className={style.btnSection}>
 
-                    <p className={style.characters}>{commentChars} Characters Left</p>
+                                <p className={style.characters}>{commentChars} Characters Left</p>
 
-                    <button className={style.button} onClick={(e) => {
-                        e.preventDefault();
-                        sendComment()
-                    }}>Post Comment</button>
+                                <button className={style.button} onClick={(e) => {
+                                    e.preventDefault();
+                                    sendComment()
+                                }}>Post Comment</button>
 
-                </div>
+                            </div>
+
+                        </>
+                    
+                    : 
+                        <>
+                            <h1 className={style.commentTitle}>You need to log in before you can comment on this post</h1>
+
+                            <div className={style.buttonDiv}>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    router.push('/login')
+                                }} className={style.loginBtn}>Login</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    router.push('/signup')
+                                }} className={style.signUpBtn}>Sign Up</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    router.push('/')
+                                }} className={style.homeBtn}>Home</button>
+                            </div>
+                            
+                        </>
+                    }
 
             </div>
 

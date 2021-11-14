@@ -1,0 +1,78 @@
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#F7F8FD;
+}
+
+.container_body {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 80px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 30px;
+    color:rgba(58, 67, 116)
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color:rgba(58, 67, 116);
+}
+
+.label {
+    font-weight: bold;
+}
+
+.description {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color:rgba(58, 67, 116, 0.7);
+    font-size:14px;
+}
+
+.input, .selectMenu {
+    width: 100%;
+    padding: 10px;
+    /* padding-right: 40px */
+    border: none;
+    border-radius: 5px;
+    background-color: #F7F8FD;
+    color:rgba(58, 67, 116);
+    resize: none
+}
+
+.textarea {
+    height: 120px;
+}
+
+.buttonDiv {
+    margin-top: 10px
+}
+
+.editBtn, .homeBtn, .deleteBtn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.editBtn {
+    background-color: #AD1FEA
+}
+.deleteBtn {
+    background-color: #D73737
+}
+.homeBtn {
+    background-color: rgba(58, 67, 116)
+}  

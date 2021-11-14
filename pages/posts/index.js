@@ -115,7 +115,7 @@ function Index(props) {
 
             <ul>
                 <li><Link href='/' >Return Home</Link></li>
-                <li><Link href='/profilepage'>View Your Profile</Link></li>
+                <li><Link href='/profile'>View Your Profile</Link></li>
             </ul>
             
         </div>
