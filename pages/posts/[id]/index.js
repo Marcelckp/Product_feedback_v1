@@ -14,6 +14,8 @@ import style from '../../../styles/singlePost.module.css';
 //image import
 import default_pfp from '../../../image/default_pfp.png'
 
+//components
+import RouteNav from '../../../Components/routeNav/routeNav';
 
 function index(props) {
 
@@ -23,9 +25,23 @@ function index(props) {
 
     const user = useSelector(state => state.CurrentUser.value);
 
-    const [commentsForPost, setCommentsForPost] = useState(0);
+    const [commentsForPost, setCommentsForPost] = useState([]);
 
     const [added, setAdded] = useState(0);
+
+    //================================================================
+    //delete post logic
+
+    const deletePost = async () => {
+        await axios.delete('/api/feedback', { 
+            params: { id: props.id } })
+            .then((res) => {
+                router.push('/posts/')
+                // refreshData();
+            }).catch((e) => {
+                console.log(e)
+            })
+    }
 
     // ===============================================================
     // like logic section 
@@ -34,7 +50,7 @@ function index(props) {
 
     const refreshData = async () => await router.reload(window.location.pathname);
 
-    const likePost = async (id) => {
+    const likePost = async () => {
 
         if (user && !alreadyLiked) {
 
@@ -86,6 +102,7 @@ function index(props) {
             user,
         }).then((res) => {
             setAdded(prev => prev + 1);
+            // refreshData()
             // console.log(res)
         }).catch((err) => {
             // console.log(err)
@@ -96,7 +113,9 @@ function index(props) {
 
     useEffect(() => {
         let mounted = true;
+
         isLiked();
+
         axios.get('/api/comment', {
             params: {
                 id: props.id
@@ -104,13 +123,17 @@ function index(props) {
         }).then((res) => {
             setCommentsForPost(res.data)
         })
+
+        return () => {
+            mounted = false;
+        }
     },[added])
 
 console.log(user)
 
     return (
         <div className={style.container}>
-
+            <RouteNav edit={true} id={props.id} />
             <div className={style.container_body}>
 
                 <h1 className={style.feedbackTitle}>{props.post.title}</h1>
@@ -137,14 +160,14 @@ console.log(user)
                         <svg width="18" height="16" viewBox="0 0 18 16" fill="none">
                             <path d="M2.62074 16H1.34534L2.24718 15.0895C2.73344 14.5986 3.0371 13.9601 3.11873 13.2674C1.03637 11.8878 0 9.88917 0 7.79388C0 3.92832 3.51913 0 9.0305 0C14.8692 0 18 3.61479 18 7.45522C18 11.321 14.8361 14.9333 9.0305 14.9333C8.0135 14.9333 6.95226 14.7963 6.00478 14.5448C5.10787 15.4735 3.89262 16 2.62074 16Z" fill="#CDD2EE"/>
                         </svg> 
-                        <p className={style.commentLength}>{commentsForPost.length}</p>
+                        <p className={style.commentLength}>{commentsForPost.length || 0}</p>
                     </div>
                     
                 </div>
 
             </div>
 
-            { commentsForPost ? 
+            { commentsForPost.length > 0 ? 
                 <div className={style.container_comments}>
 
                         <h1 className={style.allCommentsTitle}>{commentsForPost && commentsForPost.length === 1 ? `${commentsForPost.length} Comment` : commentsForPost && commentsForPost.length > 1 ? `${commentsForPost.length || 0} Comments` : ''}</h1>
@@ -222,7 +245,7 @@ console.log(user)
                                 }} className={style.signUpBtn}>Sign Up</button>
                                 <button onClick={(e) => {
                                     e.preventDefault();
-                                    router.push('/')
+                                    deletePost();
                                 }} className={style.homeBtn}>Home</button>
                             </div>
                             
@@ -230,15 +253,6 @@ console.log(user)
                     }
 
             </div>
-
-                {/* <ul>
-                    <li>
-                        <Link href='/'>Return Home</Link>
-                    </li>
-                    <li>
-                        <Link href='/profile'>View Profile</Link>
-                    </li>
-                </ul> */}
 
         </div>
     )

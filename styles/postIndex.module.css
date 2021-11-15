@@ -1,0 +1,89 @@
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color:#F7F8FD;
+}
+
+.container_container {
+    margin-top: 130px;
+    width: 100%;
+}
+
+.container_body {
+    width: 90%;
+    max-width: 768px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 20px;
+    /* margin-top: 80px; */
+    border-radius: 10px;
+    background-color: white;
+    padding: 30px;
+    color:rgba(58, 67, 116);
+    cursor: pointer;
+}
+
+.postTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.feedback {
+    color: #647196;
+}
+
+.tagsDiv {
+    display: flex;
+}
+
+.tag {
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4661E6;
+    background-color: #F7F8FD;
+}
+
+.upVotes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likeDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: #F7F8FD;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.like_icon {
+    margin-right: 10px;
+}
+
+.liked {
+    background-color: #4661E6;
+    color: white
+}
+
+.commentDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.commentCount {
+    margin-left: 10px
+}

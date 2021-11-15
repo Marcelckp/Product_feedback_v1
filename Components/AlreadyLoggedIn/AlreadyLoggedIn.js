@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 //css module file 
-import style from '../../styles/alreadyLoggedIn.module.css';
+import style from './alreadyLoggedIn.module.css';
 
 //redux 
 import { useSelector } from 'react-redux';

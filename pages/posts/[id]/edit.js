@@ -10,6 +10,9 @@ import { useRouter } from 'next/router';
 //css module file
 import style from '../../../styles/editPost.module.css';
 
+//components
+import RouteNav from '../../../Components/routeNav/routeNav';
+
 function edit(props) {
 
     console.log(props);
@@ -38,6 +41,7 @@ function edit(props) {
 
     return (
         <div className={style.container}>
+            <RouteNav edit={false} />
             <div className={style.container_body}>
                 <h1 className={style.title}>{`Editing '${props.post.title}'`}</h1>
                 <br />

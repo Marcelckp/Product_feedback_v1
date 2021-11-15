@@ -1,6 +1,8 @@
 import connectToDb from '../../db';
 import comments from '../Models/comments';
 
+import feedback from '../Models/feedback';
+
 export default async (req, res, next) => {
     await connectToDb()
 
@@ -9,19 +11,25 @@ export default async (req, res, next) => {
         // res.send(req.body)
 
         const newComment = new comments(req.body)
+
+        const post = await feedback.findOne( { '_id': { $eq: req.body.post_id } } );
         
         try {
+
             await newComment.save();
-            res.status(201).json(newComment);
+
+            const upDatePost = await feedback.findByIdAndUpdate( req.body.post_id, { comments: [...post.comments, newComment._id] }, { new: true })
+
+            res.status(201).json(newComment, upDatePost);
+
         } catch (err) {
             res.status(301).json(err.message)
         }
 
-        console.log('targeting post comments')
-
     } else if (req.method === 'GET') {
         
-        console.log(req.query)
+        // console.log(req.query)
+        
         try {
             const comEnt = await comments.find( { "post_id" : { $eq : req.query.id } } );
 

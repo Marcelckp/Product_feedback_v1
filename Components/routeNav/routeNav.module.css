@@ -1,0 +1,46 @@
+.NavC {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 768px;
+    margin: auto;
+}
+
+.NavMain {
+    padding-bottom: 10px;
+    padding-top: 20px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: #F7F8FD;
+}
+
+.goBack {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.drop {
+    margin-top: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #647196;
+    margin-left: 20px;
+}
+
+.edit {
+    padding: 10px 15px;
+    background-color: #4661E6;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
