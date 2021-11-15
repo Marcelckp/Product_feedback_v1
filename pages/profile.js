@@ -70,15 +70,13 @@ function profilePage() {
                     <br />
                     <p><Link href='/'>Go Home</Link></p>
                     <br />
-                    <a>
+                    <p>
                         <Link href='/posts'>View Posts</Link>
-                    </a>
+                    </p>
                     <br />
-                    <br />
-                    <a>
+                    <p>
                         <Link href='/posts/create'>Create a Post</Link>
-                    </a>
-                <br />
+                    </p>
                 <br />
                 <button className={style.logoutBtn} onClick={(e) => {
                     e.preventDefault();
@@ -86,7 +84,7 @@ function profilePage() {
                     router.push('/');
                 }}>Log Out</button>
 
-                <br /><br /><br />
+                <br /><br />
                 
                 <div>
                     <p>Current Profile picture</p>

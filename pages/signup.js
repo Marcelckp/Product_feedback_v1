@@ -107,7 +107,7 @@ export default function Home() {
           setUser(response.data);
           setError(null);
           dispatch(login(response.data));
-          router.push('/profilepage');
+          router.push('/profile');
 
         }
 
