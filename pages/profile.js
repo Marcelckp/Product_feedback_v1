@@ -18,7 +18,8 @@ import FileBase from 'react-file-base64';
 
 import defaultPfP from '../image/default_pfp.png';
 
-// import Cookie from 'js-cookie';
+//css module file
+import style from '../styles/profilepage.module.css';
 
 function profilePage() {
 
@@ -59,51 +60,58 @@ function profilePage() {
     // console.log(store.getState().CurrentUser.value)
     
     return (
-        <>
-            <div>
-                <p>Hi there {CurrentUser ? CurrentUser.username : ''} Its good to see you!</p>
-                <ul>
-                    <li><Link href='/login'> Go to Login </Link></li>
-                    <li><Link href='/signup'>Go to Sign Up</Link></li>
-                    <li><Link href='/'>Go Home</Link></li>
-                    <li>
+        <div className={style.container}>
+            <div className={style.container_body}>
+                <h1 className={style.title}>Hi there {CurrentUser ? CurrentUser.username : ''} Its good to see you!</h1>
+                    <br />
+                    <p><Link href='/login'> Go to Login </Link></p>
+                    <br />
+                    <p><Link href='/signup'>Go to Sign Up</Link></p>
+                    <br />
+                    <p><Link href='/'>Go Home</Link></p>
+                    <br />
+                    <a>
                         <Link href='/posts'>View Posts</Link>
-                    </li>
-                    <li>
+                    </a>
+                    <br />
+                    <br />
+                    <a>
                         <Link href='/posts/create'>Create a Post</Link>
-                    </li>
-                        
-                </ul>
+                    </a>
                 <br />
-                <button onClick={(e) => {
+                <br />
+                <button className={style.logoutBtn} onClick={(e) => {
                     e.preventDefault();
                     dispatch(logout());
                     router.push('/');
                 }}>Log Out</button>
-                <br />
-                <br />
+
                 <br /><br /><br />
                 
                 <div>
                     <p>Current Profile picture</p>
-                    { CurrentUser && !CurrentUser.profilePhoto ? <img src={defaultPfP} alt='profile' /> : CurrentUser && CurrentUser.profilePhoto ? <img src={CurrentUser.profilePhoto} alt='profile'/> : ''}
+                    { CurrentUser && !CurrentUser.profilePhoto ? <img className={style.pfp} src={defaultPfP} alt='profile' /> : CurrentUser && CurrentUser.profilePhoto ? <img className={style.pfp} src={CurrentUser.profilePhoto} alt='profile'/> : ''}
                 </div>
 
-                <h1>Add a profile Picture</h1>
+                <br />
+
+                <h1 className={style.title2}>Add a profile Picture</h1>
 
                 {/* <input onChange={() => console.log(profilePicture.current.value)} ref={profilePicture} type="file" placeholder='Click here to add your profile picture' /> */}
 
-                <FileBase 
-                    type='file'
-                    multiple={false}
-                    onDone={({ base64 }) => {
-                        console.log(base64)
-                        setProfilePicture(base64)
-                    }}
-                />
-
                 <br />
-                <button onClick={(e) => {
+                <div className={style.choose}>
+                    <FileBase
+                        type='file'
+                        multiple={false}
+                        onDone={({ base64 }) => {
+                            console.log(base64)
+                            setProfilePicture(base64)
+                        }}
+                    />
+                </div>
+                <br />
+                <button className={style.setPfp} onClick={(e) => {
                     e.preventDefault()
                     axios.put('/api/accounts', {
                         profilePicture: true,
@@ -115,16 +123,17 @@ function profilePage() {
                 }}>Set Profile Picture</button>
 
                 <br />
-                <button>Delete Account</button>
+                <br />
+                <button className={style.deleteBtn}>Delete Account</button>
+                <br />
                 <br />
                 <div>
-                    <h1>Your Feedback Posts</h1>
+                    <h1 className={style.title2}>Your Feedback Posts</h1>
+                    <br />
                     { posts && posts.map((post, i) => {
                         return (
                             <div key={i}>
                                 <div>
-                                    <h2>{post.creator.name}</h2>
-                                    <h3>{post.creator.username}</h3>
                                     <p>{post.feedback}</p>
                                     <p>{post.tags}</p>
                                     <p>Likes: {post.likes.length}</p>
@@ -136,7 +145,7 @@ function profilePage() {
                     }) }
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

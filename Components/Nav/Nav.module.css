@@ -18,6 +18,7 @@
 .titleSection {
     font-weight: bold;
     color: white;
+    cursor: pointer;
 }
 
 .bottomNav {

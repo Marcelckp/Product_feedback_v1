@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 
 //next imports
 import Link from 'next/link';
-import axios from 'axios';
+
+//css module file
+import style from '../styles/home.module.css';
 
 function index() {
 
@@ -13,29 +15,28 @@ function index() {
     console.log(user);
 
     return (
-        <div>
-            <p>Home Page</p>
-            {user ? <p>Welcome Sir/Madam {user.username}</p> : ''}
-            <ul>
-                {user ? <li><Link href='/profile'>View Your Profile</Link></li> : ''}
-                <li><Link href='/signup'>Sign Up</Link></li>
-                <li><Link href='/login'>Login</Link></li>
-                <li>
-                    <Link href='/posts'>View Posts</Link>
-                </li>
-            </ul>
-
-            { user ?
-                <div>
-                    <h1>Now that you are logged in you have these permissions</h1>
-                    <ul>
-                        <li>
-                            <Link href='/posts/create'>Create a Feedback Post</Link>
-                        </li>
-                    </ul>
-                </div>
-            :
-            null}
+        <div className={style.container}>
+            <div className={style.container_body}>
+                { user ? <h1 className={style.title}>Welcome Sir/Madam {user.username}</h1> : ''}
+                    <br />
+                    {user ? 
+                    <p><Link href='/profile'>View Your Profile</Link></p> : ''}
+                    <br />
+                    <p><Link href='/signup'>Sign Up</Link></p>
+                    <br />
+                    <p><Link href='/login'>Login</Link></p>
+                    <br />
+                    <p>
+                        <Link href='/posts'>View Posts</Link>
+                    </p>
+                    <br />
+                { user ?
+                            <p>
+                                <Link href='/posts/create'>Create a Feedback Post</Link>
+                            </p>
+                :
+                null}
+            </div>
         </div>
     )
 }

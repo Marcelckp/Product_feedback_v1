@@ -17,7 +17,7 @@ function Nav() {
         <>
 
             <div className={style.container}>
-                <div className={style.titleSection}>
+                <div onClick={() => router.push('/')} className={style.titleSection}>
                     <p>Feedback Board</p>
                 </div>
                 <div className={style.burger} onClick={() => {
