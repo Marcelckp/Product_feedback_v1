@@ -15,7 +15,7 @@ import RouteNav from '../../../Components/routeNav/routeNav';
 
 function edit(props) {
 
-    // console.log(props);
+    console.log(props);
 
     const router = useRouter();
 
@@ -33,6 +33,7 @@ function edit(props) {
     const status = useRef(props.post.status);
 
     //===============================
+    // save functionality
 
     const saveChanges = async () => {
         await axios.put('/api/feedback', { 
@@ -49,6 +50,20 @@ function edit(props) {
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    //===============================
+    // delete functionality
+
+    const deletePost = async () => {
+        await axios.delete('/api/feedback', { 
+            params: { id: props.id } })
+            .then(() => {
+                router.push('/posts/')
+                // refreshData();
+            }).catch((e) => {
+                console.log(e)
+            })
     }
 
     //===============================
@@ -122,6 +137,7 @@ function edit(props) {
                     <br />
                     <button className={style.deleteBtn} onClick={(e) => {
                         e.preventDefault();
+                        deletePost();
                     }}>Delete</button>
                 </div>
                 

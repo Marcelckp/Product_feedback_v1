@@ -70,7 +70,7 @@ export default async (req, res, next) => {
         // console.log(req.query.id)
 
         await feedback.deleteOne({'_id':  req.query.id  } );
-        res.status(200).json( { message: req.body.id } );
+        res.status(200).json( { message: 'Successfully deleted feedback post' } );
 
     } else if (req.method === 'GET') {
         
