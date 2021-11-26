@@ -240,17 +240,32 @@
     border-radius: 10px;
     color: white;
     font-weight: bold;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .loginBtn {
-    background-color: #AD1FEA
+    background-color: #AD1FEA;
+    cursor: pointer;
+}
+
+.loginBtn:hover {
+    background-color: rgb(173, 31, 234, 0.8)
 }
 
 .signUpBtn {
     background-color: rgba(58, 67, 116);
+    cursor: pointer;
+}
+
+.signUpBtn:hover {
+    background-color:rgba(58, 67, 116, 0.8)
 }
 
 .homeBtn {
     background-color: #D73737;
+    cursor: pointer;
+}
+
+.homeBtn:hover {
+    background-color: rgba(215, 55, 55, 0.8)
 }

@@ -1,0 +1,62 @@
+.RoadMapContainer {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 25px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.RoadMapHead {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.RoadMapTitle {
+    font-weight: bold;
+    color: #3A4374;
+    font-size: 20px;
+}
+
+.RoadMapView {
+    border-bottom: 1px solid #4661E6;
+    color: #4661E6;
+    cursor: pointer;
+}
+
+.RoadMapBottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.tagDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.RoadMapTag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dot {
+    margin-right: 20px;
+}
+
+.tag {
+    color: #647196
+}
+
+.num {
+    font-weight: bold;
+    color: #647196
+}

@@ -22,3 +22,11 @@
     padding: 30px;
 }
 
+.homeBtn {
+    cursor: pointer;
+}
+
+.profileBtn {
+    cursor: pointer;
+}
+

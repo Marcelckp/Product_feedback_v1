@@ -46,8 +46,8 @@ function profilePage() {
                 }
             })
                 .then((res) => {
-                    console.log(res.data)
-                    if (mounted) setPosts(res.data)
+                    console.log(res.data);
+                    if (mounted) setPosts(res.data);
                 });
 
         }
@@ -63,10 +63,10 @@ function profilePage() {
         <div className={style.container}>
             <div className={style.container_body}>
                 <h1 className={style.title}>Hi there {CurrentUser ? CurrentUser.username : ''} Its good to see you!</h1>
-                    <br />
+                    {/* <br />
                     <p><Link href='/login'> Go to Login </Link></p>
                     <br />
-                    <p><Link href='/signup'>Go to Sign Up</Link></p>
+                    <p><Link href='/signup'>Go to Sign Up</Link></p> */}
                     <br />
                     <p><Link href='/'>Go Home</Link></p>
                     <br />

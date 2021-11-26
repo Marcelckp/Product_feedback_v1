@@ -15,7 +15,7 @@ import RouteNav from '../../../Components/routeNav/routeNav';
 
 function edit(props) {
 
-    console.log(props);
+    // console.log(props);
 
     const router = useRouter();
 
@@ -24,13 +24,37 @@ function edit(props) {
     //===============================
     //refs 
 
-    const category = useRef(props.post.tags)
+    const category = useRef(props.post.tags);
 
-    const feedback = useRef(props.post.feedback)
+    const feedback = useRef(props.post.feedback);
+
+    const title = useRef(props.post.title);
+
+    const status = useRef(props.post.status);
+
+    //===============================
+
+    const saveChanges = async () => {
+        await axios.put('/api/feedback', { 
+
+            editPost: true,
+            id: props.id, 
+            title: title.current.value,
+            feedback: feedback.current.value,
+            status: status.current.value,
+            category: category.current.value
+
+        }).then(() => {
+            router.push('/');
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
     //===============================
 
     useEffect(() => {
+
         if (!user || user.username !== props.post.creator.username) {
             router.push('/login');
         } 
@@ -50,7 +74,7 @@ function edit(props) {
                 <br />
                 <p className={style.description}>Add a short description headline</p>
 
-                <input className={style.input} type="text" defaultValue={props.post.title} />
+                <input className={style.input} type="text" ref={title} defaultValue={props.post.title} />
                 <br />
                 <br />
                 <label className={style.label} htmlFor="">Category</label>
@@ -70,7 +94,7 @@ function edit(props) {
                 <br />
                 <p className={style.description}>Change feedback status</p>
 
-                <select className={style.selectMenu} ref={category} name="" id="">
+                <select className={style.selectMenu} ref={status} name="" id="">
                     <option value="Planned">Planned</option>
                     <option value="In-Progress">In-Progress</option>
                     <option value="Live">Live</option>
@@ -88,6 +112,7 @@ function edit(props) {
                 <div className={style.buttonDiv}>
                     <button className={style.editBtn} onClick={(e) => {
                         e.preventDefault();
+                        saveChanges();
                     }}>Save Changes</button>
                     <br />
                     <button className={style.homeBtn} onClick={(e) => {

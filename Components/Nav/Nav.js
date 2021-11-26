@@ -6,6 +6,10 @@ import React, { useState } from 'react'
 //css module file
 import style from './Nav.module.css'
 
+//component
+import Tags from './Tags/Tags';
+import Roadmap from './Roadmap/Roadmap';
+
 function Nav() {
 
     const router = useRouter()
@@ -39,11 +43,11 @@ function Nav() {
             </div>
 
             <div className={`${style.menu} ${openMenu ? style.open_menu : ''}`}>
-                
+                <Tags />
+                <Roadmap />
             </div>
             {openMenu ?
                 <div className={style.backDrop}>
-                    {/* <p>menu</p> */}
                 </div>
             : ''}
             

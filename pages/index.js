@@ -17,25 +17,49 @@ function index() {
     return (
         <div className={style.container}>
             <div className={style.container_body}>
-                { user ? <h1 className={style.title}>Welcome Sir/Madam {user.username}</h1> : ''}
-                    <br />
-                    {user ? 
-                    <p><Link href='/profile'>View Your Profile</Link></p> : ''}
-                    <br />
-                    <p><Link href='/signup'>Sign Up</Link></p>
-                    <br />
-                    <p><Link href='/login'>Login</Link></p>
-                    <br />
-                    <p>
-                        <Link href='/posts'>View Posts</Link>
-                    </p>
-                    <br />
+                { user ? 
+                    <h1 className={style.title}>Welcome Sir/Madam {user.username}</h1> 
+                : 
+                    <>
+                        <h1 className={style.title}>Welcome To The Feedback App</h1>
+                        <br />
+                    </>
+                }
+
+                {user ? 
+                    <>
+                        <br />
+                        <p><Link href='/profile'>View Your Profile</Link></p> 
+                        <br />
+                    </>
+                : ''}
+
+                
+
+                {!user ? 
+                    <>
+                        <p><Link href='/signup'>Sign Up</Link></p>
+                        <br />
+                        <p><Link href='/login'>Login</Link></p>
+                        <br />
+                    </>
+                : ''}
+                
+                <p>
+                    <Link href='/posts'>View Posts</Link>
+                </p>
+                
+
                 { user ?
-                            <p>
-                                <Link href='/posts/create'>Create a Feedback Post</Link>
-                            </p>
+                    <>
+                        <br />
+                        <p>
+                            <Link href='/posts/create'>Create a Feedback Post</Link>
+                        </p>
+                    </>
                 :
                 null}
+
             </div>
         </div>
     )

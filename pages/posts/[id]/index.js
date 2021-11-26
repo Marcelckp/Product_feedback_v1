@@ -90,7 +90,7 @@ function index(props) {
 
     const calChars = () => {
         let numbCharsCurrent = comment.current.value.length;
-        console.log(numbCharsCurrent)
+        // console.log(numbCharsCurrent)
 
         setCommentChars(250 - numbCharsCurrent)
     }
@@ -235,18 +235,22 @@ console.log(user)
                             <h1 className={style.commentTitle}>You need to log in before you can comment on this post</h1>
 
                             <div className={style.buttonDiv}>
+                            
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     router.push('/login')
                                 }} className={style.loginBtn}>Login</button>
+
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     router.push('/signup')
                                 }} className={style.signUpBtn}>Sign Up</button>
+
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     deletePost();
                                 }} className={style.homeBtn}>Home</button>
+
                             </div>
                             
                         </>
@@ -259,7 +263,7 @@ console.log(user)
 }
 
 export const getServerSideProps = async (context) => {
-    console.log(context.params.id)
+    // console.log(context.params.id)
     const post = await axios.get('http://localhost:3000/api/feedback', {
             params: {
                 singlePost: true,

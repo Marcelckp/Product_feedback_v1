@@ -1,0 +1,33 @@
+.tagsContainer {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    margin-top: 140px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    min-height: 160px;
+}
+
+.tagDiv {
+    padding: 8px 15px;
+    background-color: #F2F4FF;
+    color: #4661E6;
+    cursor: pointer;
+    margin: 5px 5px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-right: 5px;
+    /* align-items: center */
+}
+
+.tagDiv:hover {
+    background-color: #4661E6;
+    color: white
+}
+
+.tag {
+
+}
