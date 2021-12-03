@@ -45,7 +45,7 @@ function Index(props) {
     return (
         <div className={style.container}>
 
-        <Nav />
+            <Nav />
             
             <div className={style.container_container}>
                 {user && feedBackPosts ? feedBackPosts.map( (post, i) => {

@@ -18,7 +18,7 @@ function index() {
         <div className={style.container}>
             <div className={style.container_body}>
                 { user ? 
-                    <h1 className={style.title}>Welcome Sir/Madam {user.username}</h1> 
+                    <h1 className={style.title}>Welcome {user.username}!</h1> 
                 : 
                     <>
                         <h1 className={style.title}>Welcome To The Feedback App</h1>

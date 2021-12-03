@@ -1,0 +1,101 @@
+.nav {
+    position: fixed;
+    width: 100%;
+    background-color: #373F68;
+    padding: 20px;
+    color: white;
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feedback {
+    cursor: pointer;
+}
+
+.goBackDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px
+}
+
+.title {
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    margin-left: 20px;
+}
+.feedback {
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    background-color: #AD1FEA;
+    border-radius: 10px;
+    /* margin-right: 20px; */
+    cursor: pointer;
+}
+
+.roadmap {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.legend {
+    position: relative;
+    top: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 14px;
+    padding-bottom: 12px;
+    color: #979797;
+}
+
+.legend p {
+    cursor: pointer;
+}
+
+.active {
+    padding-bottom: 11px;
+    color: #3A4374;
+    font-weight: bold;
+    border-bottom: 3px solid #AD1FEA;
+    z-index: 2;
+}
+
+.legend p:hover {
+    padding-bottom: 11px;
+    border-bottom: 3px solid #AD1FEA;
+    z-index: 2;
+}
+
+.bem {
+    position: absolute;
+    top: 130px;
+    width: 100%;
+    color: #979797;
+    border-bottom: 1px solid #979797
+}
+
+.container {
+    position: absolute;
+    top: 140px;
+    padding: 20px;
+}
+
+.containerTitle {
+    color:#3A4374;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.containerBlur {
+    color: #647196
+}

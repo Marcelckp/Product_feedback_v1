@@ -25,6 +25,8 @@ function index(props) {
 
     const user = useSelector(state => state.CurrentUser.value);
 
+    // console.log(props.post.creator.email, user.email)
+
     const [commentsForPost, setCommentsForPost] = useState([]);
 
     const [added, setAdded] = useState(0);
@@ -133,7 +135,7 @@ console.log(user)
 
     return (
         <div className={style.container}>
-            <RouteNav edit={true} id={props.id} />
+            <RouteNav edit={user ? props.post.creator.email === user.email : false} id={props.id} />
             <div className={style.container_body}>
 
                 <h1 className={style.feedbackTitle}>{props.post.title}</h1>

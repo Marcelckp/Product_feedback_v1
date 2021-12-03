@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 //css module file
-import style from '../../../styles/editPost.module.css';
+import style from './editPost.module.css';
 
 //components
 import RouteNav from '../../../Components/routeNav/routeNav';

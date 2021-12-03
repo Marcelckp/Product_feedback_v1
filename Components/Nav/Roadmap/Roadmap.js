@@ -1,15 +1,19 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 //css module file
 import style from './Roadmap.module.css';
 
 function Roadmap() {
+
+    const router = useRouter();
+
     return (
         <div className={style.RoadMapContainer}>
 
             <div className={style.RoadMapHead}>
                 <p className={style.RoadMapTitle}>Roadmap</p>
-                <p className={style.RoadMapView}>View</p>
+                <p className={style.RoadMapView} onClick={(e) => router.push('/roadMap')}>View</p>
             </div>
 
             <div className={style.RoadMapBottom}>
