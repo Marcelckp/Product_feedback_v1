@@ -27,7 +27,13 @@ function Nav() {
                 <div className={style.burger} onClick={() => {
                     openMenu ? setOpenMenu(false) : setOpenMenu(true)
                 }}>
-                    <p>burger menu</p>
+                    <div className={`${style.Burger} ${openMenu ? style.open: ''}`}>
+                        <span className={style.span}></span>
+                        <span className={style.span}></span>
+                        <span className={style.span}></span>
+                        <span className={style.span}></span>
+
+                    </div>
                 </div>
             </div>
 

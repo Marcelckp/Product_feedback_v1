@@ -2,8 +2,9 @@
     position: fixed;
     width: 100%;
     background-color: #373F68;
-    padding: 20px;
+    padding: 20px 30px;
     color: white;
+    z-index: 2;
 }
 
 .navContainer {
@@ -46,56 +47,197 @@
 }
 
 .legend {
-    position: relative;
+    position: fixed;
+    width: 100%;
     top: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 30px;
     font-size: 14px;
     padding-bottom: 12px;
     color: #979797;
+    background-color: #F7F8FD;
+    z-index: 1;
 }
 
 .legend p {
     cursor: pointer;
 }
 
-.active {
+.activePlan {
+    padding-bottom: 11px;
+    color: #3A4374;
+    font-weight: bold;
+    border-bottom: 3px solid #F49F85;
+    z-index: 2;
+}
+.activeProg {
     padding-bottom: 11px;
     color: #3A4374;
     font-weight: bold;
     border-bottom: 3px solid #AD1FEA;
     z-index: 2;
 }
+.activeLive {
+    padding-bottom: 11px;
+    color: #3A4374;
+    font-weight: bold;
+    border-bottom: 3px solid #62BCFA;
+    z-index: 2;
+}
 
-.legend p:hover {
+.plannedHov:hover {
+    padding-bottom: 11px;
+    border-bottom: 3px solid #F49F85;
+    z-index: 2;
+}
+.liveHov:hover {
+    padding-bottom: 11px;
+    border-bottom: 3px solid #62BCFA;
+    z-index: 2;
+}
+.inprogressHov:hover {
     padding-bottom: 11px;
     border-bottom: 3px solid #AD1FEA;
     z-index: 2;
 }
 
 .bem {
-    position: absolute;
+    position: fixed;
     top: 130px;
     width: 100%;
-    color: #979797;
-    border-bottom: 1px solid #979797
+    background-color: #8C92B3;
+    border-bottom: 1px solid #8C92B3;
+    z-index: 2;
 }
 
 .container {
     position: absolute;
     top: 140px;
-    padding: 20px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
 
 .containerTitle {
     color:#3A4374;
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .containerBlur {
-    color: #647196
+    color: #647196;
+    font-size: 15px;
+}
+
+.containerContent {
+    margin-top: 30px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%; */
+}
+
+/* ================================= */
+/* FeedbackContainer */
+/* F49 IS A COOL ASS COLOUR */
+
+.FeedbackContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.planned {
+    border-top: 8px solid #F49F85;
+}
+
+.inprogress {
+    border-top: 8px solid #AD1FEA;
+}
+
+.live {
+    
+    border-top: 8px solid #62BCFA;
+}
+
+.containerTag {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.containerTag p {
+    color: #647196;
+}
+
+.dot {
+    margin-right: 10px;
+}
+
+.feedbackTitle {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #3A4374;
+}
+
+.interactions {
+    margin-top: 20px;
+}
+
+.interactionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* NOTE --> Fit-Content is OP !!!! */
+.classification {
+    width: fit-content;
+    padding: 8px 20px;
+    background-color: #F7F8FD;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4661E6;
+}
+
+.commentContainer, .likeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likeContainer {
+    width: auto;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: #F7F8FD;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #3A4374
+}
+
+.commentContainer {
+    font-weight: bold;
+    cursor: pointer;
+    color: #3A4374
+}
+
+.likeContainer svg {
+    margin-right: 10px;
+}
+
+.commentContainer p {
+    margin-left: 10px;
 }
