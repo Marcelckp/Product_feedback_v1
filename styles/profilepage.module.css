@@ -80,3 +80,108 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+/* ============================================================= */
+/* Post Section */
+
+.FeedbackSection {
+    width: 90%;
+    margin: auto;
+    margin-top: -40px;
+}
+
+.FeedbackContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.planned {
+    border-top: 8px solid #F49F85;
+}
+
+.inprogress {
+    border-top: 8px solid #AD1FEA;
+}
+
+.live {
+    
+    border-top: 8px solid #62BCFA;
+}
+
+.containerTag {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.containerTag p {
+    color: #647196;
+}
+
+.dot {
+    margin-right: 10px;
+}
+
+.feedbackTitle {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #3A4374;
+}
+
+.interactions {
+    margin-top: 20px;
+}
+
+.interactionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* NOTE --> Fit-Content is OP !!!! */
+.classification {
+    width: fit-content;
+    padding: 8px 20px;
+    background-color: #F7F8FD;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #4661E6;
+}
+
+.commentContainer, .likeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likeContainer {
+    width: auto;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: #F7F8FD;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #3A4374
+}
+
+.commentContainer {
+    font-weight: bold;
+    cursor: pointer;
+    color: #3A4374
+}
+
+.likeContainer svg {
+    margin-right: 10px;
+}
+
+.commentContainer p {
+    margin-left: 10px;
+}
