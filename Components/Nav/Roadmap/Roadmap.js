@@ -1,12 +1,42 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 //css module file
 import style from './Roadmap.module.css';
 
-function Roadmap() {
+//axios
+import axios from 'axios';
 
+function RoadMap() {
+    
     const router = useRouter();
+    const [live, setLive] = useState(0);
+    const [planned, setPlanned] = useState(0);
+    const [progress, setProgress] = useState(0);
+
+
+    //Find a better more efficient way of getting the amount of feedback entries per category !! BUT YOUR DOING AMAZING KEEP IT UP!!
+    useEffect(() => {
+        let live = 0;
+        let planned = 0;
+        let progress = 0;
+
+        const res = axios.get('http://localhost:3000/api/feedback')
+            .then(res => res.data)
+            .then(res => {
+                console.log(res)
+                res.forEach((resObj) => {
+                    if (resObj.status === 'Planned') planned++;
+                    if (resObj.status === 'Live') live++;
+                    if (resObj.status === 'In-Progress') progress++;
+                })
+
+                setLive(live);
+                setPlanned(planned);
+                setProgress(progress)
+            });
+
+    },[])
 
     return (
         <div className={style.RoadMapContainer}>
@@ -29,7 +59,7 @@ function Roadmap() {
                         <p className={style.tag}>Planned</p>
 
                     </div>
-                    <p className={style.num}>2</p>
+                    <p className={style.num}>{planned}</p>
 
                 </div>
 
@@ -45,7 +75,7 @@ function Roadmap() {
 
                     </div>
 
-                    <p className={style.num}>3</p>
+                    <p className={style.num}>{progress}</p>
 
                 </div>
 
@@ -61,7 +91,7 @@ function Roadmap() {
 
                     </div>
 
-                    <p className={style.num}>3</p>
+                    <p className={style.num}>{live}</p>
 
                 </div>
 
@@ -71,4 +101,33 @@ function Roadmap() {
     )
 }
 
-export default Roadmap
+export const getServerSideProps = async () => {
+    const res = await axios.get('http://localhost:3000/api/feedback')
+        .then(res => res.data);
+    console.log(res)
+        let planned = [];
+        let live = [];
+        let inprogress = [];
+
+        res.forEach((post) => {
+            if (post.status === 'Planned') {
+                planned.push(post)
+            } else if (post.status === 'In-Progress') {
+                inprogress.push(post)
+            } else if (post.status === 'Live') {
+                live.push(post)
+            }
+        })
+
+    return {
+        props: {
+            hi: 'hi',
+            res,
+            planned, 
+            live, 
+            inprogress
+        }
+    }
+}
+
+export default RoadMap

@@ -1,14 +1,18 @@
 import { useRouter } from 'next/router';
 
 //next imports
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 //css module file
-import style from './Nav.module.css'
+import style from './Nav.module.css';
 
 //component
 import Tags from './Tags/Tags';
 import Roadmap from './Roadmap/Roadmap';
+
+// Recoil
+import { useRecoilValue } from 'recoil';
+import { searchState } from '../../atoms/searchAtom'
 
 function Nav() {
 
@@ -16,7 +20,10 @@ function Nav() {
 
     const [openMenu, setOpenMenu] = useState(false);
 
-    // console.log(openMenu)
+    const search = useRecoilValue(searchState);
+
+    console.log(search);
+
     return (
         <>
 
@@ -32,7 +39,6 @@ function Nav() {
                         <span className={style.span}></span>
                         <span className={style.span}></span>
                         <span className={style.span}></span>
-
                     </div>
                 </div>
             </div>
