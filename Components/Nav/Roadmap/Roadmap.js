@@ -101,33 +101,33 @@ function RoadMap() {
     )
 }
 
-export const getServerSideProps = async () => {
-    const res = await axios.get('http://localhost:3000/api/feedback')
-        .then(res => res.data);
-    console.log(res)
-        let planned = [];
-        let live = [];
-        let inprogress = [];
+// export const getServerSideProps = async () => {
+//     const res = await axios.get('http://localhost:3000/api/feedback')
+//         .then(res => res.data);
+//     console.log(res)
+//         let planned = [];
+//         let live = [];
+//         let inprogress = [];
 
-        res.forEach((post) => {
-            if (post.status === 'Planned') {
-                planned.push(post)
-            } else if (post.status === 'In-Progress') {
-                inprogress.push(post)
-            } else if (post.status === 'Live') {
-                live.push(post)
-            }
-        })
+//         res.forEach((post) => {
+//             if (post.status === 'Planned') {
+//                 planned.push(post)
+//             } else if (post.status === 'In-Progress') {
+//                 inprogress.push(post)
+//             } else if (post.status === 'Live') {
+//                 live.push(post)
+//             }
+//         })
 
-    return {
-        props: {
-            hi: 'hi',
-            res,
-            planned, 
-            live, 
-            inprogress
-        }
-    }
-}
+//     return {
+//         props: {
+//             hi: 'hi',
+//             res,
+//             planned, 
+//             live, 
+//             inprogress
+//         }
+//     }
+// }
 
 export default RoadMap
