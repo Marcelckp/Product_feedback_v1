@@ -46,7 +46,9 @@
 .sortBy {
     color: white;
     margin-left: 30px;
-    font-size: 12px
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
 }
 
 .feedback {
@@ -90,9 +92,6 @@
 .Burger {
     width: 50px;
     height: 30px;
-    /* background: black; */
-    /* margin: 50px auto;
-    margin-bottom: 10px; */
     position: relative;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -162,3 +161,56 @@ top: 18px;
 width: 0%;
 left: 50%;
 }
+
+
+/* ======================================================= */
+/* Select Menu */
+
+.btn {
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+    border: none;
+}
+
+.dropdown__menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 130px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    /* height: 0px */
+    display: none
+}
+
+.open__dropdown {
+    display: block;
+}
+
+.dropdown__item {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    padding: 10px 5px;
+    /* height: 0 */
+
+    text-decoration: none;
+    white-space: nowrap;
+    background-image: linear-gradient(#AD1FEA);
+    padding-bottom: 10px;
+    background-size: 0% 3px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    -webkit-transition: background-size 300ms ease;
+    transition: background-size 300ms ease;
+}
+
+.dropdown__item:hover {
+    background-size: 100% 3px;
+}
+

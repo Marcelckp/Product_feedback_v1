@@ -17,12 +17,17 @@ import Nav from '../../Components/Nav/Nav';
 // Recoil state
 import { useRecoilState } from 'recoil';
 import { searchState } from '../../atoms/searchAtom';
+import { sortState } from '../../atoms/sortAtom';
+
+// HEY THERE AMAZING WORK WELL DONE IM PROUD OF YOU IMMENSELY KEEP IT UP THE LAST THING NEEDED ON THIS PAGE BEFORE YOU DO RESPONSIVE SCALING IS TO ALLOW THE USER TO FILTER THE POSTS BEING DISPLAYED IN ORDER OF MOST UPVOTES && LEAST UP VOTES AS WELL AS MOST COMMENTS && LEAST COMMENTS
 
 function Index(props) {
 
     // console.log(props);
 
     const [filter] = useRecoilState(searchState);
+
+    const [sort] = useRecoilState(sortState);
 
     const router = useRouter();
 
@@ -31,6 +36,19 @@ function Index(props) {
     const user = useSelector(state => state.CurrentUser.value);
 
     const [feedBackPosts, setFeedBackPosts] = useState(props.posts);
+    
+    useEffect(() => {
+        if (sort === 'Most upVotes') {
+            setFeedBackPosts(feedBackPosts.sort((a,b) => a.likes.length - b.likes.length));
+        } else if (sort === 'Least upVotes') {
+            setFeedBackPosts(feedBackPosts.sort((a,b) => b.likes.length - a.likes.length));
+        } else if (sort === 'Most Comments') {
+            setFeedBackPosts(feedBackPosts.sort((a,b) => a.comments.length - b.comments.length));
+        } else if (sort === 'Least Comments') {
+            setFeedBackPosts(feedBackPosts.sort((a,b) => b.comments.length - a.comments.length));
+        }
+    },[filter, sort])
+
 
     const likePost = async (id, L) => {
         if (L) return alert('You have already liked this post') 

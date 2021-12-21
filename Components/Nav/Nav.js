@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 //next imports
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 //css module file
 import style from './Nav.module.css';
@@ -11,22 +11,23 @@ import Tags from './Tags/Tags';
 import Roadmap from './Roadmap/Roadmap';
 
 // Recoil
-import { useRecoilValue } from 'recoil';
-import { searchState } from '../../atoms/searchAtom'
+import { useRecoilState } from 'recoil';
+import { sortState } from '../../atoms/sortAtom'
 
 function Nav() {
 
-    const router = useRouter()
+    const router = useRouter();
 
     const [openMenu, setOpenMenu] = useState(false);
 
-    const search = useRecoilValue(searchState);
+    const [openSort, setOpenSort] = useState(false);
 
-    console.log(search);
+    const [sort, setSort] = useRecoilState(sortState);
+
+    console.log(sort);
 
     return (
         <>
-
             <div className={style.container}>
                 <div onClick={() => router.push('/')} className={style.titleSection}>
                     <p>Feedback Board</p>
@@ -45,7 +46,36 @@ function Nav() {
 
             <div className={style.bottomNav}>
                 <div className={style.sortBy}>
-                    <p>sort by: Most Upvotes ></p>
+                    <p>Sort By :</p>
+                    <div class={style.dropdown}>
+                        <button class={style.btn} onClick={() => openSort ? setOpenSort(false) : setOpenSort(true)} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {sort}
+                        </button>
+                        <div class={`${style.dropdown__menu} ${openSort ? style.open__dropdown : ''}`} aria-labelledby="dropdownMenuButton">
+
+                            <p onClick={() => {
+                                setSort('Most upVotes');
+                                setOpenSort(false);
+                            }} class={style.dropdown__item}>Most Upvotes</p>
+
+                            <p onClick={() => {
+                                setSort('Least upVotes');
+                                setOpenSort(false);
+                            }}class={style.dropdown__item}>Least Upvotes</p>
+
+                            <p onClick={() => {
+                                setSort('Most Comments');
+                                setOpenSort(false);
+                            }}class={style.dropdown__item}>Most Comments</p>
+
+                            <p onClick={() => {
+                                setSort('Least Comments');
+                                setOpenSort(false)
+                            }}class={style.dropdown__item}>Least Comments</p>
+
+                        </div>
+                    </div>
+
                 </div>
                 <div onClick={() => {
                     router.push('/posts/create')
@@ -62,7 +92,6 @@ function Nav() {
                 <div className={style.backDrop}>
                 </div>
             : ''}
-            
         </>
     )
 }

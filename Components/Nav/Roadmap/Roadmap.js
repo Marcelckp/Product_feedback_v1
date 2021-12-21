@@ -24,7 +24,7 @@ function RoadMap() {
         const res = axios.get('http://localhost:3000/api/feedback')
             .then(res => res.data)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 res.forEach((resObj) => {
                     if (resObj.status === 'Planned') planned++;
                     if (resObj.status === 'Live') live++;
