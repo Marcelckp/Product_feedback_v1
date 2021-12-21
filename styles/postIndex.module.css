@@ -87,3 +87,38 @@
 .commentCount {
     margin-left: 10px
 }
+
+/* ========================================== */
+/* Not Found Section */
+
+.noFilterMatch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    text-align: center;
+    /* height: 100% */
+}
+
+.noFilterTitle {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #3A4374
+}
+
+.noFilterBlur {
+    color: #647196
+}
+
+.feedbackBtn {
+    font-weight: bold;
+    color: white;
+    padding: 10px 15px;
+    background-color: #AD1FEA;
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
+    margin-bottom: 10px;
+    margin-top: 30px
+}
