@@ -17,9 +17,12 @@ import default_pfp from '../../../image/default_pfp.png'
 //components
 import RouteNav from '../../../Components/routeNav/routeNav';
 
+//moment js
+import moment from 'moment';
+
 function index(props) {
 
-    console.log(props);
+    // console.log(props);
 
     const router = useRouter();
 
@@ -131,8 +134,6 @@ function index(props) {
         }
     },[added])
 
-console.log(user)
-
     return (
         <div className={style.container}>
             <RouteNav edit={user ? props.post.creator.email === user.email : false} id={props.id} />
@@ -179,7 +180,9 @@ console.log(user)
                             { commentsForPost ?
 
                                 commentsForPost.map(( val, i ) => {
-                                    console.log(val)
+
+                                    const m = moment(val.createdAt);
+
                                     return (
                                         <div className={style.bodyCmt} key={i}>
 
@@ -193,12 +196,10 @@ console.log(user)
                                             </div>
 
                                             <div className={style.contentSection}>
-                                                <p style={{color: '#647196'}}>{val.comment}</p>
-                                                <p>{val.createdAt}</p>
+                                                <p style={{color: '#647196', marginBottom: '20px'}}>{val.comment}</p>
+                                                <p style={{color: 'rgba(58, 67, 116,0.5)'}}>{m.fromNow()}</p>
                                             </div>
                                             
-                                            
-
                                         </div>
                                     )
                                 })
@@ -250,7 +251,7 @@ console.log(user)
 
                                 <button onClick={(e) => {
                                     e.preventDefault();
-                                    deletePost();
+                                    router.push('/')
                                 }} className={style.homeBtn}>Home</button>
 
                             </div>

@@ -66,6 +66,7 @@
     /* color: #3A4374; */
     background-color: #F7F8FD;
     -webkit-appearance: none;
+    cursor: pointer;
 }
 
 .textarea {
@@ -94,6 +95,7 @@
     border-radius: 10px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .submitBtn {

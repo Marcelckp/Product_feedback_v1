@@ -24,7 +24,7 @@ function Nav() {
 
     const [sort, setSort] = useRecoilState(sortState);
 
-    console.log(sort);
+    // console.log(sort);
 
     return (
         <>
@@ -47,31 +47,31 @@ function Nav() {
             <div className={style.bottomNav}>
                 <div className={style.sortBy}>
                     <p>Sort By :</p>
-                    <div class={style.dropdown}>
-                        <button class={style.btn} onClick={() => openSort ? setOpenSort(false) : setOpenSort(true)} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div className={style.dropdown}>
+                        <button className={style.btn} onClick={() => openSort ? setOpenSort(false) : setOpenSort(true)} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {sort}
                         </button>
-                        <div class={`${style.dropdown__menu} ${openSort ? style.open__dropdown : ''}`} aria-labelledby="dropdownMenuButton">
+                        <div className={`${style.dropdown__menu} ${openSort ? style.open__dropdown : ''}`} aria-labelledby="dropdownMenuButton">
 
                             <p onClick={() => {
                                 setSort('Most upVotes');
                                 setOpenSort(false);
-                            }} class={style.dropdown__item}>Most Upvotes</p>
+                            }} className={style.dropdown__item}>Most Upvotes</p>
 
                             <p onClick={() => {
                                 setSort('Least upVotes');
                                 setOpenSort(false);
-                            }}class={style.dropdown__item}>Least Upvotes</p>
+                            }} className={style.dropdown__item}>Least Upvotes</p>
 
                             <p onClick={() => {
                                 setSort('Most Comments');
                                 setOpenSort(false);
-                            }}class={style.dropdown__item}>Most Comments</p>
+                            }} className={style.dropdown__item}>Most Comments</p>
 
                             <p onClick={() => {
                                 setSort('Least Comments');
                                 setOpenSort(false)
-                            }}class={style.dropdown__item}>Least Comments</p>
+                            }} className={style.dropdown__item}>Least Comments</p>
 
                         </div>
                     </div>

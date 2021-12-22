@@ -55,6 +55,10 @@
     resize: none
 }
 
+.selectMenu {
+    cursor: pointer;
+}
+
 .textarea {
     height: 120px;
 }
@@ -71,6 +75,7 @@
     color: white;
     font-weight: bold;
     margin-top: 20px;
+    cursor: pointer
 }
 
 .editBtn {
