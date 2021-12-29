@@ -133,7 +133,7 @@ function roadMap(props) {
                                             <div className={style.interactionsContainer}>
                                                 <div className={style.likeContainer}>
                                                     <svg className="postIndex_like_icon__1gl9i" width="9" fill="none" height="7" viewBox="0 0 9 7">
-                                                    <path id="Path 2" d="M0 6L4 2L8 6" stroke="#4661E6" stroke-width="2"></path>
+                                                    <path id="Path 2" d="M0 6L4 2L8 6" stroke="#4661E6" strokeWidth="2"></path>
                                                     </svg>
                                                     <p>{plan.likes.length}</p>
                                                 </div>
@@ -179,7 +179,7 @@ function roadMap(props) {
                                             <div className={style.interactionsContainer}>
                                                 <div className={style.likeContainer}>
                                                     <svg className="postIndex_like_icon__1gl9i" width="9" fill="none" height="7" viewBox="0 0 9 7">
-                                                        <path id="Path 2" d="M0 6L4 2L8 6" stroke="#4661E6" stroke-width="2"></path>
+                                                        <path id="Path 2" d="M0 6L4 2L8 6" stroke="#4661E6" strokeWidth="2"></path>
                                                     </svg>
                                                     <p>{plan.likes.length}</p>
                                                 </div>
